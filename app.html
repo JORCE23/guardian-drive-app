@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Guardian Drive App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0f172a',
+                        card: '#1e293b',
+                        border: '#334155',
+                        accent: '#deff9a',
+                        danger: '#f43f5e',
+                        safe: '#10b981'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="mobile-web-app-capable" content="yes">
+</head>
+<body class="bg-dark text-slate-100 font-sans antialiased h-screen flex flex-col justify-between overflow-hidden">
+
+    <header class="bg-card border-b border-border px-4 py-3 flex justify-between items-center shrink-0">
+        <div class="flex items-center gap-2">
+            <i class="fa-solid fa-shield-halved text-accent text-lg"></i>
+            <span class="font-extrabold text-sm tracking-wider text-white">GUARDIAN<span class="text-accent">DRIVE</span></span>
+            <span class="bg-safe/20 text-safe text-[10px] font-bold px-1.5 py-0.5 rounded uppercase">Conectado</span>
+        </div>
+        <div class="flex items-center gap-3 text-slate-400 text-sm">
+            <i class="fa-solid fa-bell animate-pulse text-accent"></i>
+            <i class="fa-solid fa-circle-user"></i>
+        </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto p-4 pb-24">
+        
+        <div id="screen-home" class="space-y-4">
+            <div class="bg-card border border-border rounded-2xl p-4 flex justify-between items-center">
+                <div>
+                    <p class="text-xs text-slate-400 font-medium">Vehículo Protegido</p>
+                    <h3 class="text-base font-bold text-white">Opel Corsa 2022</h3>
+                    <p class="text-[11px] text-safe mt-1"><i class="fa-solid fa-microchip mr-1"></i> Módulo Stealth BLE activo</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-dark flex items-center justify-center border border-accent">
+                    <i class="fa-solid fa-car text-accent text-lg"></i>
+                </div>
+            </div>
+
+            <div class="py-4 flex flex-col items-center justify-center">
+                <div class="relative">
+                    <div class="absolute inset-0 rounded-full bg-danger/20 animate-ping"></div>
+                    <button onclick="triggerAntiTrauma()" class="relative z-10 w-36 h-36 rounded-full bg-gradient-to-b from-danger to-red-700 flex flex-col items-center justify-center shadow-2xl border-4 border-dark active:scale-95 transition-all">
+                        <i class="fa-solid fa-triangle-exclamation text-white text-4xl mb-1"></i>
+                        <span class="text-white font-black text-xs tracking-wider uppercase">S.O.S Táctico</span>
+                        <span class="text-red-200 text-[9px] mt-0.5">Anti-Trauma</span>
+                    </button>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-4 text-center">Manten presionado para activar protocolo de desescalada y luces de emergencia internas.</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-card border border-border rounded-xl p-3">
+                    <span class="text-[10px] text-slate-400 block uppercase font-bold">Estado Jammer</span>
+                    <div class="flex items-center gap-2 mt-1">
+                        <i class="fa-solid fa-signal text-safe text-sm"></i>
+                        <span class="font-bold text-xs text-white">Frecuencia Limpia</span>
+                    </div>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-3">
+                    <span class="text-[10px] text-slate-400 block uppercase font-bold">Red Mesh Local</span>
+                    <div class="flex items-center gap-2 mt-1">
+                        <i class="fa-solid fa-tower-broadcast text-accent text-sm"></i>
+                        <span class="font-bold text-xs text-white">14 Nodos Activos</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-dark border border-accent/30 rounded-xl p-3 flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-bolt text-accent text-xs"></i>
+                    <span class="text-xs text-slate-300 font-bold">Simular Corte Motor (Anti-Jammer)</span>
+                </div>
+                <button onclick="simulateJammer()" class="bg-accent text-dark font-black text-[10px] px-3 py-1.5 rounded-lg uppercase">Probar</button>
+            </div>
+        </div>
+
+        <div id="screen-ai" class="hidden space-y-4 h-full flex flex-col">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider">Visión Edge YOLOv8</h3>
+                    <p class="text-[10px] text-slate-400">Escaneo perimetral a 0 km/h activo</p>
+                </div>
+                <span class="bg-accent text-dark text-[9px] font-black px-2 py-0.5 rounded">MODO ESPEJO NEGRO</span>
+            </div>
+
+            <div class="relative flex-1 bg-black rounded-2xl overflow-hidden border border-border flex flex-col justify-end p-3">
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b10_1px,transparent_1px),linear-gradient(to_bottom,#1e293b10_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+                
+                <div class="absolute top-1/4 left-1/3 w-32 h-48 border-2 border-accent bg-accent/5 rounded flex flex-col justify-between p-1 animate-pulse">
+                    <span class="bg-accent text-dark text-[8px] font-bold px-1 self-start">Peatón Sospechoso: 89%</span>
+                    <span class="text-accent text-[8px] self-end">Distancia: 1.2m</span>
+                </div>
+
+                <div class="relative z-10 bg-dark/80 backdrop-blur-sm rounded-xl p-2.5 border border-border flex justify-between items-center text-xs">
+                    <span class="text-safe flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-circle text-[8px]"></i> Cámara Frontal Activa</span>
+                    <span class="text-slate-400 text-[10px]">FPS: 30 | Latencia: 12ms</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-mesh" class="hidden space-y-4">
+            <div>
+                <h3 class="text-sm font-bold text-white uppercase tracking-wider">Radar de Rescate Mesh</h3>
+                <p class="text-[10px] text-slate-400">Pulsos Bluetooth de baja energía encriptados</p>
+            </div>
+
+            <div class="bg-card border border-border rounded-2xl p-6 text-center flex flex-col items-center justify-center min-h-[250px] relative overflow-hidden">
+                <div class="absolute w-72 h-72 rounded-full border border-border/40 animate-ping"></div>
+                <div class="absolute w-48 h-48 rounded-full border border-border/60"></div>
+                <div class="absolute w-24 h-24 rounded-full border border-accent/20"></div>
+                
+                <i class="fa-solid fa-car text-accent text-2xl relative z-10"></i>
+                <p class="text-xs text-white font-bold mt-3 relative z-10">Escaneando Subterráneos de Concepción</p>
+                <p class="text-[10px] text-slate-500 mt-1 max-w-xs relative z-10">Tu vehículo emite una baliza invisible. Si es robado, cualquier usuario de la red reportará su posición pasivamente.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <nav class="absolute bottom-0 left-0 right-0 bg-card border-t border-border h-16 flex justify-around items-center px-2 z-50">
+        <button onclick="switchTab('home')" id="tab-home" class="flex flex-col items-center gap-1 text-accent transition-all">
+            <i class="fa-solid fa-house text-lg"></i>
+            <span class="text-[9px] font-bold">Inicio</span>
+        </button>
+        <button onclick="switchTab('ai')" id="tab-ai" class="flex flex-col items-center gap-1 text-slate-500 hover:text-slate-300 transition-all">
+            <i class="fa-solid fa-eye text-lg"></i>
+            <span class="text-[9px] font-bold">IA Táctica</span>
+        </button>
+        <button onclick="switchTab('mesh')" id="tab-mesh" class="flex flex-col items-center gap-1 text-slate-500 hover:text-slate-300 transition-all">
+            <i class="fa-solid fa-network-wired text-lg"></i>
+            <span class="text-[9px] font-bold">Red Mesh</span>
+        </button>
+    </nav>
+
+    <div id="modal-alert" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-danger border-2 border-white rounded-3xl p-6 text-center max-w-xs w-full shadow-2xl animate-scale-up">
+            <i class="fa-solid fa-skull text-white text-5xl mb-3 animate-bounce"></i>
+            <h3 class="text-lg font-black text-white uppercase tracking-wider">¡Ataque Jammer Detectado!</h3>
+            <p class="text-white text-xs mt-2 leading-relaxed font-medium">Señal GPS/GSM suprimida externamente. Iniciando corte de inyección inercial seguro a los 20 km/h.</p>
+            <button onclick="closeModal()" class="mt-5 w-full bg-dark text-white font-black text-xs py-2.5 rounded-xl uppercase tracking-wider">Entendido / Desactivar</button>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            // Ocultar todas las pantallas
+            document.getElementById('screen-home').classList.add('hidden');
+            document.getElementById('screen-ai').classList.add('hidden');
+            document.getElementById('screen-mesh').classList.add('hidden');
+
+            // Resetear colores de botones
+            document.getElementById('tab-home').className = 'flex flex-col items-center gap-1 text-slate-500 hover:text-slate-300 transition-all';
+            document.getElementById('tab-ai').className = 'flex flex-col items-center gap-1 text-slate-500 hover:text-slate-300 transition-all';
+            document.getElementById('tab-mesh').className = 'flex flex-col items-center gap-1 text-slate-500 hover:text-slate-300 transition-all';
+
+            // Activar la seleccionada
+            document.getElementById('screen-' + tab).classList.remove('hidden');
+            document.getElementById('tab-' + tab).className = 'flex flex-col items-center gap-1 text-accent transition-all';
+        }
+
+        function triggerAntiTrauma() {
+            alert("🚨 PROTOCOLO ANTI-TRAUMA ACTIVADO:\n\n1. Luces de cabina encendidas al 100%.\n2. Seguros liberados para evitar quiebres.\n3. Alerta silenciosa enviada a tu red de contactos.");
+        }
+
+        function simulateJammer() {
+            document.getElementById('modal-alert').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-alert').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
